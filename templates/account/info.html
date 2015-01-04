@@ -36,25 +36,25 @@
 		<ul class="list-unstyled">
 			{{if $user.Location}}
 			<li>
-				<img src="http://gopher.qiniudn.com/static/img/icon-location.png">
+				<img src="/static/img/icon-location.png">
 				<a href="/members/city/{{$user.Location}}">{{$user.Location}}</a>
 			</li>
 			{{end}}
 			{{if $user.Website}}
 			<li>
-				<img src="http://gopher.qiniudn.com/static/img/icon-website.png">
+				<img src="/static/img/icon-website.png">
 				<a href="{{.utils.Url $user.Website}}" target="_blank">{{$user.Website}}</a>
 			</li>
 			{{end}}
 			{{if $user.Weibo}}
 			<li>
-				<img src="http://gopher.qiniudn.com/static/img/icon-weibo.png">
+				<img src="/static/img/icon-weibo.png">
 				<a href="http://weibo.com/{{$user.Weibo}}" target="_blank">http://weibo.com/{{$user.Weibo}}</a>
 			</li>
 			{{end}}
 			{{if $user.GitHubUsername}}
 			<li>
-				<img src="http://gopher.qiniudn.com/static/img/icon-github.png">
+				<img src="/static/img/icon-github.png">
 				<a href="https://github.com/{{$user.GitHubUsername}}" target="_blank">https://github.com/{{$user.GitHubUsername}}</a>
 			</li>
 			{{end}}

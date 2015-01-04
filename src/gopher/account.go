@@ -598,7 +598,7 @@ func forgotPasswordHandler(handler Handler) {
 				form.AddError("username", "用户名和邮件不匹配")
 			} else {
 				message2 := `Hi %s,<br>
-我们的系统收到一个请求，说你希望通过电子邮件重新设置你在 Golang中国 的密码。你可以点击下面的链接开始重设密码：
+我们的系统收到一个请求，说你希望通过电子邮件重新设置你在 NSQ中国 的密码。你可以点击下面的链接开始重设密码：
 
 <a href="%s/reset/%s">%s/reset/%s</a><br>
 
@@ -609,7 +609,7 @@ func forgotPasswordHandler(handler Handler) {
 				c.Update(bson.M{"_id": user.Id_}, bson.M{"$set": bson.M{"resetcode": code}})
 				message2 = fmt.Sprintf(message2, user.Username, Config.Host, code, Config.Host, code)
 				webhelpers.SendMail(
-					"[Golang中国]重设密码",
+					"[NSQ中国]重设密码",
 					message2,
 					Config.FromEmail,
 					[]string{user.Email},

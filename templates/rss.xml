@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0">
   <channel>
-    <title><![CDATA[golangtc.com - golang中国社区]]></title>
-    <link>http://golangtc.com/</link>
-    <description><![CDATA[golangtc.com - golang中国社区]]></description>
+    <title><![CDATA[golangtc.com - NSQ中国社区]]></title>
+    <link>http://www.nsq.pw/</link>
+    <description><![CDATA[golangtc.com - NSQ中国社区]]></description>
     <lastBuildDate>{{.utils.FormatDate .date}}</lastBuildDate>
     <pubDate>{{.utils.FormatDate .date}}</pubDate>
     <language>zh-CN</language>
     <image>
-      <link>http://golangtc.com/</link>
-      <url>http://gopher.qiniudn.com/static/img/golang-china.png?v=14</url>
-      <title><![CDATA[golangtc - golang中国社区]]></title>
+      <link>http://www.nsq.pw/</link>
+      <url>/static/images/nsq.png?v=14</url>
+      <title><![CDATA[golangtc - NSQ中国社区]]></title>
     </image>
 	{{range $t := .topics }}
     <item>

@@ -6,6 +6,7 @@ package gopher
 
 import (
 	"fmt"
+	"html/template"
 	"net/http"
 	"strings"
 	"time"
@@ -32,9 +33,8 @@ func newArticleHandler(handler Handler) {
 	form := wtforms.NewForm(
 		wtforms.NewHiddenField("html", ""),
 		wtforms.NewTextField("title", "标题", "", wtforms.Required{}),
-		wtforms.NewTextField("original_source", "原始出处", "", wtforms.Required{}),
-		wtforms.NewTextField("original_url", "原始链接", "", wtforms.URL{}),
 		wtforms.NewSelectField("category", "分类", choices, ""),
+		wtforms.NewTextArea("description", "描述", "", wtforms.Required{}),
 	)
 
 	if handler.Request.Method == "POST" && form.Validate(handler.Request) {
@@ -53,13 +53,13 @@ func newArticleHandler(handler Handler) {
 				Id_:       id_,
 				Type:      TypeArticle,
 				Title:     form.Value("title"),
+				Markdown:  form.Value("description"),
+				Html:      template.HTML(html),
 				CreatedBy: user.Id_,
 				CreatedAt: time.Now(),
 			},
-			Id_:            id_,
-			CategoryId:     categoryId,
-			OriginalSource: form.Value("original_source"),
-			OriginalUrl:    form.Value("original_url"),
+			Id_:        id_,
+			CategoryId: categoryId,
 		})
 
 		if err != nil {
@@ -117,9 +117,15 @@ func articlesInCategoryHandler(handler Handler) {
 	if err != nil {
 		fmt.Println(err)
 	}
+
+	var categorys []ArticleCategory
+	c = handler.DB.C(ARTICLE_CATEGORIES)
+	c.Find(nil).All(&categorys)
+
 	renderTemplate(handler, "/article/index.html", BASE, map[string]interface{}{
-		"articles": articles,
-		"type":     category.Name,
+		"articles":  articles,
+		"categorys": categorys,
+		"type":      category.Name,
 	})
 }
 
@@ -155,8 +161,13 @@ func listArticlesHandler(handler Handler) {
 
 	query.(*mgo.Query).All(&articles)
 
+	var categorys []ArticleCategory
+	c = handler.DB.C(ARTICLE_CATEGORIES)
+	c.Find(nil).All(&categorys)
+
 	renderTemplate(handler, "article/index.html", BASE, map[string]interface{}{
 		"articles":   articles,
+		"categorys":  categorys,
 		"pagination": pagination,
 		"page":       page,
 		"active":     "article",
@@ -254,20 +265,22 @@ func editArticleHandler(handler Handler) {
 	form := wtforms.NewForm(
 		wtforms.NewHiddenField("html", ""),
 		wtforms.NewTextField("title", "标题", article.Title, wtforms.Required{}),
-		wtforms.NewTextField("original_source", "原始出处", article.OriginalSource, wtforms.Required{}),
-		wtforms.NewTextField("original_url", "原始链接", article.OriginalUrl, wtforms.URL{}),
+		wtforms.NewTextArea("description", "描述", article.Content.Markdown, wtforms.Required{}),
 		wtforms.NewSelectField("category", "分类", choices, article.CategoryId.Hex()),
 	)
 
 	if handler.Request.Method == "POST" {
 		if form.Validate(handler.Request) {
+			html := form.Value("html")
+			html = strings.Replace(html, "<pre>", `<pre class="prettyprint linenums">`, -1)
+
 			categoryId := bson.ObjectIdHex(form.Value("category"))
 			c = handler.DB.C(CONTENTS)
 			err = c.Update(bson.M{"_id": article.Id_}, bson.M{"$set": bson.M{
 				"categoryid":        categoryId,
-				"originalsource":    form.Value("original_source"),
-				"originalurl":       form.Value("original_url"),
 				"content.title":     form.Value("title"),
+				"content.markdown":  form.Value("description"),
+				"content.html":      template.HTML(html),
 				"content.updatedby": user.Id_.Hex(),
 				"content.updatedat": time.Now(),
 			}})

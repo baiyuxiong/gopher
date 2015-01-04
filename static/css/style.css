@@ -1,5 +1,5 @@
 body {
-	background: url(/static/img/ricepaper.png);
+	/*background: url(/static/img/ricepaper.png);*/
 	padding-bottom: 40px;
 }
 
@@ -359,7 +359,7 @@ sup.new {
 	top: 0;
 	right: -4px;
 	font-size: 10px;
-	background: url(http://gopher.qiniudn.com/static/img/new.png) no-repeat;
+	background: url(../img/new.png) no-repeat;
 }
 
 .friendly_links a {

@@ -17,11 +17,13 @@ import (
 const (
 	TypeTopic     = 'T'
 	TypeArticle   = 'A'
+	TypeOfficial  = 'O'
 	TypeSite      = 'S'
 	TypePackage   = 'P'
 	DefaultAvatar = "gopher_teal.jpg"
 
 	ADS                 = "ads"
+	OFFICIAL            = "official"
 	ARTICLE_CATEGORIES  = "articlecategories"
 	BOOKS               = "books"
 	COMMENTS            = "comments"
@@ -371,6 +373,12 @@ type Article struct {
 	CategoryId     bson.ObjectId
 	OriginalSource string
 	OriginalUrl    string
+}
+
+type Official struct {
+	Content
+	Id_          bson.ObjectId `bson:"_id"`
+	OfficialCode string
 }
 
 // 主题所属类型

@@ -1,0 +1,60 @@
+{{define "Title"}}官网{{end}}
+{{define "ContentWidth"}}9{{end}}
+{{define "Breadcrumb"}}
+	<ul class="breadcrumb">
+		<li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+	</ul>
+{{end}}
+{{define "Content"}}
+	<div class="content">
+		<h1>{{.official.Title}}</h1>
+		{{if .username}}
+			{{$official := .utils.AssertOfficial .official}}
+			{{if $official.CanEdit .username .db}}
+			<a href="/official/edit/{{.official.Id_.Hex}}" class="btn btn-info btn-xs pull-right" title="编辑"><i class="glyphicon glyphicon-edit"></i></a>
+			<a href="/official/delete/{{.official.Id_.Hex}}" class="btn btn-danger btn-xs pull-right" title="删除" onclick="return confirm('确认删除吗？');"><i class="glyphicon glyphicon-remove"></i></a>
+			{{end}}
+		{{end}}
+		<div class="body">
+			{{.official.Html}}
+		</div>
+	</div>
+{{end}}
+
+{{define "LeftSide"}}{{end}}
+
+{{define "RightSide"}}
+<div class="col-md-3">
+	<div class="well well-small navigation">
+	<ul class="nav nav-list">
+
+		<li class="nav-header">overview</li>
+		<li><a href="/official/show/Quick_Start">Quick Start</a></li>
+		<li><a href="/official/show/Features_Guarantees">Features &amp; Guarantees</a></li>
+		<li><a href="/official/show/FAQ">FAQ</a></li>
+		<li><a href="/official/show/Performance">Performance</a></li>
+		<li><a href="/official/show/Design">Design</a></li>
+		<li><a href="/official/show/Internals">Internals</a></li>
+
+
+		<li class="nav-header">components</li>
+		<li><a href="/official/show/nsqd">nsqd</a></li>
+		<li><a href="/official/show/nsqlookupd">nsqlookupd</a></li>
+		<li><a href="/official/show/nsqadmin">nsqadmin</a></li>
+		<li><a href="/official/show/utilities">utilities</a></li>
+
+
+		<li class="nav-header">clients</li>
+		<li><a href="/official/show/TCP_Protocol_Spec">TCP Protocol Spec</a></li>
+		<li><a href="/official/show/Client_Libraries">Client Libraries</a></li>
+		<li><a href="/official/show/Building_Client_Libraries">Building Client Libraries</a></li>
+
+		<li class="nav-header">deployment</li>
+		<li><a href="/official/show/Installing">Installing</a></li>
+		<li><a href="/official/show/Production_Configuration">Production Configuration</a></li>
+		<li><a href="/official/show/Topology_Patterns">Topology Patterns</a></li>
+		<li><a href="/official/show/Docker">Docker</a></li>
+	</ul>
+</div>
+</div>
+{{end}}

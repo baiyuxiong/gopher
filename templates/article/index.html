@@ -11,15 +11,12 @@
 {{end}}
 {{define "Content"}}
 	<div class="content">
-		<h3><small>收录关于Golang的中文文章.如果作者发现不可以引用,请联系站长删除.</small></h3>
-	</div>
-	<div class="content">
 		<dl class="topics">
 		{{range .articles}}
 		    {{$creater := .Creater $.db}}
 		    {{$category := .Category $.db}}
 			<dd>
-				<a href="/a/{{.Id_.Hex}}/redirect" class="title" target="_blank">{{.Title}}</a>
+				<a href="/a/{{.Id_.Hex}}" class="title" target="_blank">{{.Title}}</a>
 				{{if $.username}}
 					{{if .CanEdit $.username $.db}}
 						<a href="/a/{{.Id_.Hex}}/edit"><i class="icon-pencil"></i></a>
@@ -46,7 +43,19 @@
 
 {{define "RightSide"}}
 	<div class="col-md-2">
-		<a href="/article/new" class="btn btn-info btn-lg btn-block" style="margin-bottom: 20px;">转载文章</a>
+		<a href="/article/new" class="btn btn-info btn-lg btn-block" style="margin-bottom: 20px;">发表文章</a>
+
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title">分类</h3>
+			</div>
+			<ul class="list-group">
+				{{range .categorys}}
+				<li class="list-group-item"><a href="/article/go/{{.Id_.Hex}}">{{.Name}}</a></li>
+				{{end}}
+			</ul>
+		</div>
+
         {{if .utils.HasAd "2cols" .db}}
 		    {{.utils.AdCode "2cols" .db}}
         {{end}}

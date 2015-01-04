@@ -1,34 +1,33 @@
-{{define "Title"}}{{.title}}{{end}}
+{{define "Title"}}{{.title}}官方{{end}}
 {{define "ContentWidth"}}8{{end}}
 {{define "Breadcrumb"}}
 	<ul class="breadcrumb">
 		<li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
-		<li class="active">提交第三方包</li>
+		<li class="active">{{.title}}官方</li>
 	</ul>
 {{end}}
 {{define "Content"}}
-<div class="content">
-	<form action="{{.action}}" method="post" id="package-form" role="form">
-		<fieldset>
+	<div class="content">
+		<form action="{{.action}}" method="post" id="official-form" role="form">
 			<input type="hidden" name="html" id="html">
-			{{.utils.RenderInput .form "category_id"}}
-			{{.utils.RenderInput .form "name"}}
-			{{.utils.RenderInput .form "url" `placeholder="http://或https://"`}}
+			{{.utils.RenderInput .form "title"}}
 			<div class="form-group">
 				<div class="wmd-panel">
-					<label for="wmd-input">描述</label>
+					<label for="wmd-input">内容</label>
 					<div id="wmd-button-bar"></div>
 					<textarea class="wmd-input form-control" id="wmd-input" name="description" rows="20">{{.form.Value "description"}}</textarea>
 				</div>
 			</div>
+			{{.utils.RenderInput .form "code"}}
 			<div class="form-group">
 				<label>预览</label>
 				<div id="wmd-preview" class="wmd-panel wmd-preview"></div>
 			</div>
-			<input type="submit" class="btn btn-primary" value="{{.title}}">
-		</fieldset>
-	</form>
-</div>
+			<div class="form-actions">
+				<input type="submit" class="btn btn-primary" value="{{.title}}">
+			</div>
+		</form>
+	</div>
 <script type="text/javascript" src="/static/js/Markdown.Converter.js"></script>
 <script type="text/javascript" src="/static/js/Markdown.Editor.js"></script>
 <script type="text/javascript" src="/static/js/Markdown.Sanitizer.js"></script>
@@ -38,14 +37,17 @@
 		var editor1 = new Markdown.Editor(converter1);
 		editor1.run();
 	})();
-	
-	$('#package-form').submit(function () {
+
+	$('#official-form').submit(function () {
 		$('#html').val($('#wmd-preview').html());
-		
+
 		return true;
 	});
 </script>
 {{end}}
 
 {{define "LeftSide"}}{{end}}
-{{define "RightSide"}}{{end}}
+{{define "RightSide"}}
+<div class="col-md-4 sidebar">
+</div>
+{{end}}

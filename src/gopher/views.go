@@ -248,6 +248,11 @@ func (u *Utils) AssertPackage(i interface{}) *Package {
 	return &v
 }
 
+func (u *Utils) AssertOfficial(i interface{}) *Official {
+	v, _ := i.(Official)
+	return &v
+}
+
 func message(handler Handler, title string, message string, class string) {
 	renderTemplate(handler, "message.html", BASE, map[string]interface{}{"title": title, "message": template.HTML(message), "class": class})
 }

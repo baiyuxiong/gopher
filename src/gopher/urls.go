@@ -154,5 +154,11 @@ var (
 		{"/download", Everyone, downloadHandler},
 		{"/download/package", Everyone, downloadPackagesHandler},
 		{"/download/liteide", Everyone, downloadLiteIDEHandler},
+
+		{"/official", Everyone, officialHandler},
+		{"/official/show/{officialcode}", Everyone, showOfficialHandler},
+		{"/official/new", Administrator, newOfficialHandler},
+		{"/official/edit/{officialcode}", Administrator, editOfficialHandler},
+		{"/official/delete/{officialcode}", Administrator, deleteOfficialHandler},
 	}
 )
