@@ -1,6 +1,8 @@
 #Gopher
 
 NSQ中国([www.nsq.pw](http://www.nsq.pw))源代码.
+Forked from ([https://github.com/jimmykuu/gopher](https://github.com/jimmykuu/gopher))
+感谢jimmykuu
 
 ##Requirements
 
