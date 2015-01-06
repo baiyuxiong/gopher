@@ -80,6 +80,16 @@ func (u *Utils) Index(index int) int {
 func (u *Utils) FormatDate(t time.Time) string {
 	return t.Format(time.RFC822)
 }
+
+func (u *Utils) FormatFileSize(s int64) string {
+	if s < 1024{
+		return fmt.Sprintf("%d B",s)
+	}else if s < 1048576 {
+		return fmt.Sprintf("%d.%d KB",s/1024,s%1024)
+	}
+	return fmt.Sprintf("%d.%d MB",s/1048576,s%1048576/1024)
+}
+
 func (u *Utils) FormatTime(t time.Time) string {
 	now := time.Now()
 	duration := now.Sub(t)

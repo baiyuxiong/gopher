@@ -1,0 +1,27 @@
+{{define "Title"}}{{end}}
+{{define "ContentWidth"}}12{{end}}
+{{define "Breadcrumb"}}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+    <li><a href="/sourcecode">源码解读</a></li>
+</ul>
+{{end}}
+{{define "Content"}}
+<div class="content">
+    <p>本分类下列出所有版本nsq源码的解读，解读后的代码版本在<a href="https://github.com/baiyuxiong/nsq" target="_blank">https://github.com/baiyuxiong/nsq</a><p>
+    <p>如何参与解读：</p>
+    <ol>
+        <li>Clone git上的版本库<a href="https://github.com/baiyuxiong/nsq" target="_blank">https://github.com/baiyuxiong/nsq</a></li>
+        <li>切换到想要阅读的版本的分支，阅读，添加注释，提交</li>
+        <li>网站会自动更新git上代码，并在此处展示出来</li>
+    </ol>
+    <p>点击下面版本查看解读</p>
+    <ul>
+        <li><a href="/sourcecode/0.3.0">nsq 0.3.0 2014-11-18</a></li>
+        <li><a href="/sourcecode/0.2.27">nsq 0.2.27 2014-02-17</a></li>
+    </ul>
+</div>
+{{end}}
+{{define "LeftSide"}}{{end}}
+{{define "RightSide"}}
+{{end}}

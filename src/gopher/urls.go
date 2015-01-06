@@ -160,5 +160,9 @@ var (
 		{"/official/new", Administrator, newOfficialHandler},
 		{"/official/edit/{officialcode}", Administrator, editOfficialHandler},
 		{"/official/delete/{officialcode}", Administrator, deleteOfficialHandler},
+
+		{"/sourcecode", Everyone, sourcecodeHandler},
+		{"/sourcecode/{version}", Everyone, sourceVersionHandler},
+		{"/sourcecode/{version}/{path}", Everyone, sourceVersionHandler},
 	}
 )

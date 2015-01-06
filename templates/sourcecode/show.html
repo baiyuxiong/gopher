@@ -1,0 +1,44 @@
+{{define "Title"}}{{end}}
+{{define "ContentWidth"}}12{{end}}
+{{define "Breadcrumb"}}
+<ul class="breadcrumb">
+    <li><a href="/"><i class="glyphicon glyphicon-home"></i> 首页</a></li>
+    <li><a href="/sourcecode">源码解读</a></li>
+</ul>
+{{end}}
+{{define "Content"}}
+<div class="content">
+    <P>您正在阅读NSQ {{$.version}}版本的源码</P>
+    {{if $.path}}
+        <a href="/sourcecode/{{$.version}}{{$.parentPath}}">上级目录</a>
+    {{end}}
+    {{if .isDir}}
+        <ul>
+        {{range $file :=.fileList}}
+            <li>
+                <div class="col-md-9">
+                    {{if $file.IsDir}}
+                    <span style="color:#006E6D;" class="glyphicon glyphicon-folder-close"></span>
+                    {{else}}
+                    <span style="color:#40E8F6;" class="glyphicon glyphicon-file"></span>
+                    {{end}}
+                    <a href="/sourcecode/{{$.version}}/{{if $.path}}{{$.path}}-{{end}}{{$file.Name}}">{{$file.Name}} </a>
+                </div>
+                <div class="col-md-3">
+                    <span class="pull-right span">{{$.utils.FormatTime $file.ModTime}}</span>
+                    <span class="text-muted">{{$.utils.FormatFileSize $file.Size}}</span>
+                </div>
+            </li>
+        {{end}}
+        </ul>
+    {{else}}
+        <pre><code class="go">{{.fileContent}}</code></pre>
+    {{end}}
+</div>
+<script type="text/javascript" src="/static/js/highlight.pack.js"></script>
+<link rel="stylesheet" href="/static/css/highlight.min.css?v=2" type="text/css">
+<script>hljs.initHighlightingOnLoad();</script>
+{{end}}
+{{define "LeftSide"}}{{end}}
+{{define "RightSide"}}
+{{end}}

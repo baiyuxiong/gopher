@@ -24,7 +24,7 @@ $(document).ready(function(){
 
     $('.wmd-input').atwho({
         at: "@",
-        data: 'http://www.golangtc.com/users.json'
+        data: '/users.json'
     });
 
     setToTop();

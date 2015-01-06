@@ -16,6 +16,7 @@
 		    {{$creater := .Creater $.db}}
 		    {{$category := .Category $.db}}
 			<dd>
+				<a class="title" href="/article/go/{{$category.Id_.Hex}}">[{{$category.Name}}]</a>
 				<a href="/a/{{.Id_.Hex}}" class="title" target="_blank">{{.Title}}</a>
 				{{if $.username}}
 					{{if .CanEdit $.username $.db}}
@@ -24,12 +25,12 @@
 					{{end}}
 				{{end}}
 				<div class="space"></div>
-				<div class="info">
-					<a class="label label-info" href="/article/go/{{$category.Id_.Hex}}">{{$category.Name}}</a> •
-
-					<a href="/member/{{$creater.Username}}"><strong>{{$creater.Username}}</strong></a> •
-                    <a href="/a/{{.Id_.Hex}}">{{if .CommentCount}} {{.CommentCount}} {{end}}评论</a> •
-					{{$.utils.FormatTime .CreatedAt}} 提交 • 来自 <a href="{{.OriginalUrl}}" target="_blank">{{.OriginalSource}}</a>
+				<div class="info text-muted">
+					作者：<a class="text-muted" href="/member/{{$creater.Username}}">{{$creater.Username}}</a>
+					{{if .CommentCount}}
+                    	<a class="text-muted" href="/a/{{.Id_.Hex}}"> {{.CommentCount}} 评论</a>
+					{{end}}
+					<span class="pull-right" >{{$.utils.FormatTime .CreatedAt}}提交</span>
 				</div>
 			</dd>
 		{{end}}

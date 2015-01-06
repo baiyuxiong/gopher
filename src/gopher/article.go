@@ -221,6 +221,8 @@ func showArticleHandler(handler Handler) {
 		return
 	}
 
+	c.UpdateId(bson.ObjectIdHex(articleId), bson.M{"$inc": bson.M{"content.hits": 1}})
+
 	renderTemplate(handler, "article/show.html", BASE, map[string]interface{}{
 		"article": article,
 		"active":  "article",

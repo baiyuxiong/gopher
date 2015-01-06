@@ -4,7 +4,7 @@ body {
 }
 
 a {
-	color: #778087;
+	color: #333;
 }
 
 a:hover {
@@ -77,7 +77,7 @@ dl.topics .title {
 
 dl#nodes dd {
 	margin-bottom: 10px;
-	color: #999;
+	color: #333;
 }
 
 .space {
@@ -100,7 +100,7 @@ hr {
 }
 
 table.status td.status-label {
-	color: #999;
+	color: #333;
 	width: 60px;
 	text-align: right;
 }
@@ -246,7 +246,7 @@ header nav li a:hover {
 }
 
 dl.site dd {
-	color: #999;
+	color: #333;
 	border-bottom: 1px dashed #CCC;
 	padding-bottom: 10px;
 }

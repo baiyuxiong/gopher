@@ -37,6 +37,7 @@ type ConfigStruct struct {
 	GithubClientSecret         string `json:"github_auth_client_secret"`
 	GithubLoginRedirect        string `json:"github_login_redirect"`
 	GithubLoginSuccessRedirect string `json:"github_login_success_redirect"`
+	SourcecodeRoot 			   string `json:"sourcecode_root"`
 }
 
 var Config ConfigStruct
